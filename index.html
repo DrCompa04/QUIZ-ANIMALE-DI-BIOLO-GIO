@@ -17,17 +17,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #eef2ff, #e0f7fa);
       padding: 16px;
+      /* Sfondo a tema animali */
+      background-image:
+        linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
+        url("https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #111827;
     }
 
     .app {
-      background: white;
-      max-width: 900px;
+      background: rgba(255,255,255,0.96);
+      max-width: 1000px;
       width: 100%;
       border-radius: 20px;
       padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      backdrop-filter: blur(6px);
     }
 
     header {
@@ -36,13 +44,13 @@
     }
 
     header h1 {
-      font-size: 1.9rem;
+      font-size: 2rem;
       margin-bottom: 4px;
     }
 
     header p {
       font-size: 0.95rem;
-      color: #555;
+      color: #4b5563;
     }
 
     /* HOME */
@@ -54,7 +62,7 @@
     #home-intro {
       margin-bottom: 18px;
       font-size: 0.98rem;
-      color: #444;
+      color: #374151;
       line-height: 1.5;
     }
 
@@ -72,10 +80,10 @@
     }
 
     .card {
-      background: #f8fafc;
+      background: #f9fafb;
       border-radius: 14px;
       padding: 12px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #e5e7eb;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -89,7 +97,7 @@
 
     .card-desc {
       font-size: 0.85rem;
-      color: #555;
+      color: #4b5563;
     }
 
     .card button {
@@ -108,7 +116,7 @@
 
     .card button:hover {
       background: #4338ca;
-      box-shadow: 0 3px 8px rgba(79,70,229,0.3);
+      box-shadow: 0 3px 8px rgba(79,70,229,0.35);
       transform: translateY(-1px);
     }
 
@@ -145,7 +153,7 @@
     }
 
     #quiz-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: #111827;
       text-align: right;
@@ -154,20 +162,8 @@
 
     #progress {
       font-size: 0.9rem;
-      color: #666;
+      color: #6b7280;
       margin-bottom: 8px;
-    }
-
-    #image-container {
-      margin: 12px 0;
-      text-align: center;
-    }
-
-    #image-container img {
-      max-width: 100%;
-      max-height: 230px;
-      border-radius: 16px;
-      object-fit: cover;
     }
 
     #question {
@@ -184,7 +180,7 @@
 
     .answer-btn {
       border: 1px solid #cbd5f5;
-      background: #f8fafc;
+      background: #f9fafb;
       padding: 10px 12px;
       border-radius: 12px;
       text-align: left;
@@ -256,7 +252,7 @@
 
     button.primary:hover:not(:disabled) {
       background: #4338ca;
-      box-shadow: 0 4px 10px rgba(79,70,229,0.3);
+      box-shadow: 0 4px 10px rgba(79,70,229,0.35);
       transform: translateY(-1px);
     }
 
@@ -272,7 +268,7 @@
 
     #result-details {
       font-size: 0.95rem;
-      color: #555;
+      color: #4b5563;
       margin-bottom: 16px;
     }
 
@@ -286,7 +282,7 @@
       }
 
       header h1 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
       }
 
       #question {
@@ -303,22 +299,25 @@
   <div class="app">
     <header>
       <h1>Quiz sugli animali 🐾</h1>
-      <p>Un sito per allenarsi con quiz sul regno animale: livelli diversi, categorie e curiosità.</p>
+      <p>
+        Un sito per allenarsi con quiz sul regno animale: livelli diversi, categorie,
+        vertebrati, invertebrati e le loro classi.
+      </p>
     </header>
 
     <!-- HOME -->
     <section id="home">
       <p id="home-intro">
-        Questo sito è pensato per esercitarsi con quiz sugli animali: dalla base fino al livello esperto.
-        Puoi scegliere quiz generici, quiz su un singolo gruppo di animali,
-        oppure quiz dedicati alle curiosità più strane del mondo animale.
+        Questo sito è pensato per esercitarti con quiz sugli animali: dai vertebrati agli invertebrati,
+        passando per le singole classi (mammiferi, uccelli, molluschi, artropodi e molte altre).
+        Scegli il tipo di quiz e prova le tue conoscenze!
       </p>
 
       <h2 class="section-title">Quiz generici per livello</h2>
       <div class="card-grid">
         <div class="card">
           <div class="card-title">Facile 🐣</div>
-          <div class="card-desc">Domande introduttive per rompere il ghiaccio.</div>
+          <div class="card-desc">Domande introduttive, perfette per iniziare.</div>
           <button onclick="startQuizFromHome('generic', 'easy')">Inizia</button>
         </div>
         <div class="card">
@@ -328,7 +327,7 @@
         </div>
         <div class="card">
           <div class="card-title">Difficile 🦁</div>
-          <div class="card-desc">Domande più tecniche e specifiche.</div>
+          <div class="card-desc">Domande più tecniche e ragionate.</div>
           <button onclick="startQuizFromHome('generic', 'hard')">Inizia</button>
         </div>
         <div class="card">
@@ -338,27 +337,79 @@
         </div>
       </div>
 
-      <h2 class="section-title">Quiz per tipo di animale</h2>
+      <h2 class="section-title">Vertebrati e invertebrati</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">Vertebrati</div>
+          <div class="card-desc">
+            Quiz sui vertebrati nel loro insieme: mammiferi, uccelli, rettili, anfibi e pesci.
+          </div>
+          <button onclick="startQuizFromHome('macro', 'vertebrati')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Invertebrati</div>
+          <div class="card-desc">
+            Quiz sugli invertebrati: molluschi, artropodi, anellidi, echinodermi e altri gruppi.
+          </div>
+          <button onclick="startQuizFromHome('macro', 'invertebrati')">Inizia</button>
+        </div>
+      </div>
+
+      <h2 class="section-title">Classi dei vertebrati</h2>
       <div class="card-grid">
         <div class="card">
           <div class="card-title">Mammiferi</div>
-          <div class="card-desc">Dai pipistrelli alle balene, passando per i felini.</div>
-          <button onclick="startQuizFromHome('category', 'mammiferi')">Inizia</button>
-        </div>
-        <div class="card">
-          <div class="card-title">Rettili</div>
-          <div class="card-desc">Lucertole, serpenti, tartarughe e affini.</div>
-          <button onclick="startQuizFromHome('category', 'rettili')">Inizia</button>
+          <div class="card-desc">Caratteristiche, esempi e adattamenti dei mammiferi.</div>
+          <button onclick="startQuizFromHome('vertebratiClassi', 'mammiferi')">Inizia</button>
         </div>
         <div class="card">
           <div class="card-title">Uccelli</div>
-          <div class="card-desc">Dai rapaci migratori ai piccoli passeriformi.</div>
-          <button onclick="startQuizFromHome('category', 'uccelli')">Inizia</button>
+          <div class="card-desc">Caratteristiche e adattamenti del volo e non solo.</div>
+          <button onclick="startQuizFromHome('vertebratiClassi', 'uccelli')">Inizia</button>
         </div>
         <div class="card">
-          <div class="card-title">Animali marini</div>
-          <div class="card-desc">Pesci, cetacei, invertebrati e creature degli abissi.</div>
-          <button onclick="startQuizFromHome('category', 'marini')">Inizia</button>
+          <div class="card-title">Rettili</div>
+          <div class="card-desc">Pelle a squame, uova e vita sulla terraferma.</div>
+          <button onclick="startQuizFromHome('vertebratiClassi', 'rettili')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Anfibi</div>
+          <div class="card-desc">Vita tra acqua e terra, metamorfosi e pelle umida.</div>
+          <button onclick="startQuizFromHome('vertebratiClassi', 'anfibi')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Pesci</div>
+          <div class="card-desc">Branchie, pinne e adattamenti al mondo acquatico.</div>
+          <button onclick="startQuizFromHome('vertebratiClassi', 'pesci')">Inizia</button>
+        </div>
+      </div>
+
+      <h2 class="section-title">Classi degli invertebrati</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">Molluschi</div>
+          <div class="card-desc">Chiocciole, calamari, vongole e altri molluschi.</div>
+          <button onclick="startQuizFromHome('invertebratiClassi', 'molluschi')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Artropodi</div>
+          <div class="card-desc">Insetti, ragni, crostacei e millepiedi.</div>
+          <button onclick="startQuizFromHome('invertebratiClassi', 'artropodi')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Anellidi</div>
+          <div class="card-desc">Lombrichi, sanguisughe e altri vermi segmentati.</div>
+          <button onclick="startQuizFromHome('invertebratiClassi', 'anellidi')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Echinodermi</div>
+          <div class="card-desc">Stelle marine, ricci di mare e affini.</div>
+          <button onclick="startQuizFromHome('invertebratiClassi', 'echinodermi')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Altri invertebrati</div>
+          <div class="card-desc">Cnidari, poriferi, platelminti, nematodi e altri gruppi.</div>
+          <button onclick="startQuizFromHome('invertebratiClassi', 'altri')">Inizia</button>
         </div>
       </div>
 
@@ -366,7 +417,7 @@
       <div class="card-grid">
         <div class="card">
           <div class="card-title">Curiosità</div>
-          <div class="card-desc">Quiz dedicato a fatti strani, record e comportamenti particolari.</div>
+          <div class="card-desc">Record, comportamenti strani e fatti sorprendenti.</div>
           <button onclick="startQuizFromHome('special', 'curiosita')">Inizia</button>
         </div>
       </div>
@@ -382,10 +433,6 @@
       </div>
 
       <div id="progress">Domanda 1 / 1</div>
-
-      <div id="image-container" class="hidden">
-        <img id="animal-image" src="" alt="Immagine animale" />
-      </div>
 
       <h2 id="question">Testo della domanda</h2>
 
@@ -416,180 +463,190 @@
     // ==========================
     //  BANCHE DI DOMANDE
     // ==========================
-    // Puoi aggiungere / modificare domande qui.
-    // Ogni domanda ha: question, answers[], correct (indice), image, alt
 
     const questionBanks = {
       generic: {
         easy: [
           {
+            question: "Quale di questi è un animale vertebrato?",
+            answers: ["Medusa", "Rana", "Polpo", "Stella marina"],
+            correct: 1
+          },
+          {
             question: "Quale di questi animali è un mammifero?",
-            answers: ["Squalo", "Pipistrello", "Salmone", "Rana"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Common_Pipistrelle_%28Pipistrellus_pipistrellus%29_%2839226662780%29.jpg",
-            alt: "Pipistrello su un ramo"
+            answers: ["Squalo", "Gabbiano", "Gatto", "Rana"],
+            correct: 2
           },
           {
-            question: "Quale di questi animali vive principalmente in acqua dolce?",
-            answers: ["Trota", "Gabbiano", "Cammello", "Ghepardo"],
-            correct: 0,
-            image: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Trout_in_the_stream.jpg",
-            alt: "Trota in un torrente"
-          },
-          {
-            question: "Quale di questi è un uccello?",
-            answers: ["Giraffa", "Pinguino", "Delfino", "Cane"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pygoscelis_adeliae1.jpg",
-            alt: "Pinguino su ghiaccio"
+            question: "Quale tra questi vive principalmente in acqua dolce?",
+            answers: ["Trota", "Ghepardo", "Gabbiano", "Cammello"],
+            correct: 0
           }
         ],
         medium: [
           {
-            question: "Quale di questi animali è un marsupiale?",
-            answers: ["Koala", "Cane", "Gatto", "Volpe"],
-            correct: 0,
-            image: "https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg",
-            alt: "Koala su un albero"
-          },
-          {
             question: "Quale caratteristica è tipica dei mammiferi?",
             answers: [
-              "Pelle con squame",
+              "Pelle ricoperta di piume",
               "Produzione di latte per nutrire i piccoli",
-              "Respirazione tramite branchie",
-              "Metamorfosi completa"
+              "Respirazione solo tramite branchie",
+              "Metamorfosi obbligatoria"
             ],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Mother_cat_with_three_kittens.jpg",
-            alt: "Gatta che allatta i piccoli"
+            correct: 1
           },
           {
-            question: "Quale gruppo di animali depone tipicamente uova con guscio calcificato?",
-            answers: ["Mammiferi", "Rettili e uccelli", "Pesci cartilaginei", "Crostacei"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Bird_egg_collection_museum_of_vertebrate_zoology.jpg",
-            alt: "Collezione di uova di uccelli"
+            question: "Quale di questi è un animale invertebrato?",
+            answers: ["Gatto", "Cavallo", "Polpo", "Pinguino"],
+            correct: 2
+          },
+          {
+            question: "Quale gruppo contiene solo animali acquatici?",
+            answers: ["Mammiferi", "Rettili", "Pesci", "Uccelli"],
+            correct: 2
           }
         ],
         hard: [
           {
-            question: "Quale di questi animali è un esempio di mammifero oviparo?",
-            answers: ["Ornitorinco", "Pipistrello", "Delfino", "Gorilla"],
-            correct: 0,
-            image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Ornithorhynchus_anatinus.jpg",
-            alt: "Ornitorinco vicino all'acqua"
-          },
-          {
-            question: "Quale adattamento è tipico degli animali che vivono in ambienti artici?",
+            question: "Quale adattamento è tipico degli animali artici?",
             answers: [
               "Superficie corporea molto ampia rispetto al volume",
               "Strato spesso di grasso sottocutaneo",
-              "Colorazione vivace per attirare i predatori",
-              "Metabolismo estremamente lento in ogni stagione"
+              "Assenza quasi totale di pelliccia",
+              "Colorazione sempre vivace"
             ],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Polar_Bear_-_Alaska_%28cropped%29.jpg",
-            alt: "Orso polare su ghiaccio"
+            correct: 1
           },
           {
-            question: "Quale di questi animali è un super-predatore all'apice della catena alimentare nel suo ambiente?",
+            question: "Quale di questi è un super-predatore all'apice della catena alimentare nel suo ambiente?",
             answers: ["Coniglio selvatico", "Leone", "Gazzella", "Cervo"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
-            alt: "Leone in savana"
+            correct: 1
+          },
+          {
+            question: "Quale di questi animali è tipicamente notturno?",
+            answers: ["Gufo", "Rondine", "Gabbiano", "Struzzo"],
+            correct: 0
           }
         ],
         expert: [
           {
-            question: "Quale di questi animali utilizza l'ecolocalizzazione in modo particolarmente sviluppato?",
-            answers: ["Pinguino imperatore", "Pipistrello", "Tartaruga di terra", "Panda gigante"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Brown_long-eared_bat_%28Plecotus_auritus%29_2.jpg",
-            alt: "Pipistrello in volo"
+            question: "Quale gruppo di vertebrati presenta più specie conosciute?",
+            answers: ["Mammiferi", "Uccelli", "Rettili", "Pesci"],
+            correct: 3
           },
           {
             question: "Quale adattamento è tipico degli animali fossori (che vivono sottoterra)?",
             answers: [
               "Ali molto sviluppate",
               "Arti anteriori robusti e artigliati",
-              "Pinne pettorali allungate",
+              "Piume impermeabili",
               "Branchie esterne vistose"
             ],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Talpa_europaea_MHNT.jpg",
-            alt: "Talpa europea"
+            correct: 1
           },
           {
-            question: "Quale di questi animali presenta un mimetismo estremamente specializzato per confondersi con le foglie?",
-            answers: ["Geco foglia", "Pinguino", "Canguro rosso", "Cane lupo"],
-            correct: 0,
-            image: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Uroplatus_fimbriatus.jpg",
-            alt: "Geco foglia su un ramo"
+            question: "Quale tra questi è un esempio di mimetismo estremo?",
+            answers: [
+              "Colore acceso per segnalare tossicità",
+              "Cambio stagionale del pelo",
+              "Forma e colore simili a una foglia",
+              "Volo silenzioso"
+            ],
+            correct: 2
           }
         ]
       },
 
-      category: {
+      // Macro: vertebrati vs invertebrati
+      macro: {
+        vertebrati: [
+          {
+            question: "Quali tra questi gruppi appartengono ai vertebrati?",
+            answers: [
+              "Molluschi, artropodi, anellidi",
+              "Mammiferi, uccelli, rettili, anfibi e pesci",
+              "Echinodermi, cnidari, crostacei",
+              "Insetti, ragni, crostacei"
+            ],
+            correct: 1
+          },
+          {
+            question: "Quale caratteristica è tipica di tutti i vertebrati?",
+            answers: [
+              "Presenza di esoscheletro rigido esterno",
+              "Colonna vertebrale che protegge il midollo spinale",
+              "Respirazione solo tramite branchie",
+              "Pelle ricoperta di piume"
+            ],
+            correct: 1
+          },
+          {
+            question: "Quale di questi è un vertebrato appartenente al gruppo degli anfibi?",
+            answers: [
+              "Polpo comune",
+              "Rana verde",
+              "Stella marina",
+              "Lumaca di terra"
+            ],
+            correct: 1
+          }
+        ],
+
+        invertebrati: [
+          {
+            question: "Quale tra questi gruppi è formato da invertebrati?",
+            answers: [
+              "Mammiferi",
+              "Uccelli",
+              "Artropodi",
+              "Anfibi"
+            ],
+            correct: 2
+          },
+          {
+            question: "Quale caratteristica accomuna gli invertebrati?",
+            answers: [
+              "Assenza di colonna vertebrale",
+              "Presenza di peli e ghiandole mammarie",
+              "Presenza di piume",
+              "Scheletro interno osseo sempre presente"
+            ],
+            correct: 0
+          },
+          {
+            question: "In quale grande gruppo di invertebrati rientrano insetti, ragni e crostacei?",
+            answers: [
+              "Molluschi",
+              "Artropodi",
+              "Anellidi",
+              "Echinodermi"
+            ],
+            correct: 1
+          }
+        ]
+      },
+
+      // Classi dei vertebrati
+      vertebratiClassi: {
         mammiferi: [
           {
-            question: "Quale caratteristica è comune a tutti i mammiferi?",
+            question: "Quale caratteristica è tipica di tutti i mammiferi?",
             answers: [
               "Depongono uova in acqua",
-              "Allattano i piccoli con latte prodotto dalle ghiandole mammarie",
+              "Allattano i piccoli con latte prodotto da ghiandole mammarie",
               "Respirano tramite branchie",
               "Hanno sempre ali"
             ],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Elephant_and_calf.jpg",
-            alt: "Elefante con il piccolo"
+            correct: 1
           },
           {
-            question: "Quale di questi è un mammifero marino?",
-            answers: ["Squalo bianco", "Balena azzurra", "Tartaruga verde", "Barracuda"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Mother_and_baby_blue_whale.jpg",
-            alt: "Balena azzurra in mare"
+            question: "Quale tra questi è un mammifero?",
+            answers: ["Squalo bianco", "Balena azzurra", "Trota", "Gabbiano"],
+            correct: 1
           },
           {
-            question: "Quale di questi mammiferi è tipicamente notturno?",
-            answers: ["Ghiro", "Giraffa", "Zebra", "Struzzo"],
-            correct: 0,
-            image: "https://upload.wikimedia.org/wikipedia/commons/9/92/Dormouse_2007.jpg",
-            alt: "Ghiro su un ramo"
-          }
-        ],
-        rettili: [
-          {
-            question: "Quale tra questi animali è un rettile?",
-            answers: ["Rana", "Serpente", "Salmone", "Pipistrello"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Green_tree_python.jpg",
-            alt: "Serpente verde su un ramo"
-          },
-          {
-            question: "Quale caratteristica è tipica dei rettili?",
-            answers: [
-              "Pelle umida senza squame",
-              "Pelle secca ricoperta di squame",
-              "Pelle con pelliccia",
-              "Pelle ricoperta di piume"
-            ],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/2/23/Lizard_on_the_rock.jpg",
-            alt: "Lucertola su una roccia"
-          },
-          {
-            question: "Le tartarughe marine sono:",
-            answers: [
-              "Pesci",
-              "Mammiferi",
-              "Rettili",
-              "Anfibi"
-            ],
-            correct: 2,
-            image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Green_turtle_swimming_over_coral_reefs_in_Kona.jpg",
-            alt: "Tartaruga marina che nuota"
+            question: "Quale mammifero è tipicamente notturno?",
+            answers: ["Giraffa", "Zebra", "Ghiro", "Struzzo"],
+            correct: 2
           }
         ],
         uccelli: [
@@ -601,77 +658,213 @@
               "Branchie esterne",
               "Carapace rigido"
             ],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/3/32/House_sparrow04.jpg",
-            alt: "Passero su un ramo"
+            correct: 1
           },
           {
-            question: "Quale di questi uccelli è famoso per le lunghe migrazioni?",
+            question: "Quale uccello è famoso per le lunghe migrazioni?",
             answers: ["Civetta", "Rondine", "Pappagallo ara", "Struzzo"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Barn_swallow_%28Hirundo_rustica%29.jpg",
-            alt: "Rondine in volo"
+            correct: 1
           },
           {
             question: "Quale uccello è noto per non poter volare?",
             answers: ["Aquila reale", "Pinguino", "Falco pellegrino", "Gabbiano reale"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pygoscelis_adeliae1.jpg",
-            alt: "Pinguino su ghiaccio"
+            correct: 1
           }
         ],
-        marini: [
+        rettili: [
           {
-            question: "Quale di questi è un cetaceo?",
-            answers: ["Tonno rosso", "Orca", "Squalo martello", "Manta gigante"],
-            correct: 1,
-            image: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Orca_male.jpg",
-            alt: "Orca in mare"
+            question: "Quale tra questi animali è un rettile?",
+            answers: ["Rana", "Serpente", "Salmone", "Pipistrello"],
+            correct: 1
           },
           {
-            question: "Quale adattamento è tipico dei pesci ossei?",
+            question: "Quale caratteristica è tipica dei rettili?",
             answers: [
-              "Piume impermeabili",
-              "Pelle con pelliccia folta",
-              "Pinne e branchie",
-              "Ali membranose"
+              "Pelle umida senza squame",
+              "Pelle secca ricoperta di squame",
+              "Pelle con pelliccia",
+              "Pelle ricoperta di piume"
             ],
-            correct: 2,
-            image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Coral_Reef_fish.jpg",
-            alt: "Pesci colorati sulla barriera corallina"
+            correct: 1
           },
           {
-            question: "Le meduse appartengono al gruppo dei:",
-            answers: ["Mammiferi marini", "Crostacei", "Cnidari", "Molluschi"],
-            correct: 2,
-            image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Jelly_cc11.jpg",
-            alt: "Medusa in acqua"
+            question: "Le tartarughe marine appartengono al gruppo dei:",
+            answers: ["Pesci", "Mammiferi", "Rettili", "Anfibi"],
+            correct: 2
+          }
+        ],
+        anfibi: [
+          {
+            question: "Quale caratteristica è tipica degli anfibi?",
+            answers: [
+              "Pelle secca e squamosa",
+              "Pelle umida e permeabile",
+              "Carapace rigido",
+              "Piume impermeabili"
+            ],
+            correct: 1
+          },
+          {
+            question: "In quale ambiente vivono generalmente gli anfibi durante la fase larvale?",
+            answers: ["Terrestre", "Aereo", "Acquatico", "Sotterraneo"],
+            correct: 2
+          },
+          {
+            question: "Quale di questi è un anfibio?",
+            answers: ["Tritone", "Serpente", "Riccio", "Merlo"],
+            correct: 0
+          }
+        ],
+        pesci: [
+          {
+            question: "Quale caratteristica è tipica dei pesci?",
+            answers: [
+              "Polmoni ben sviluppati",
+              "Branchie per la respirazione in acqua",
+              "Piume per il volo",
+              "Pelle con pelliccia"
+            ],
+            correct: 1
+          },
+          {
+            question: "La maggior parte dei pesci si sposta usando:",
+            answers: ["Ali", "Zampe posteriori", "Pinne", "Tentacoli"],
+            correct: 2
+          },
+          {
+            question: "Quale di questi animali è un pesce osseo?",
+            answers: ["Squalo martello", "Trota", "Delfino", "Polpo"],
+            correct: 1
           }
         ]
       },
 
+      // Classi degli invertebrati
+      invertebratiClassi: {
+        molluschi: [
+          {
+            question: "A quale gruppo appartengono chiocciole, vongole e calamari?",
+            answers: ["Artropodi", "Molluschi", "Anellidi", "Echinodermi"],
+            correct: 1
+          },
+          {
+            question: "Quale struttura è tipica di molti molluschi (come le chiocciole)?",
+            answers: ["Esoscheletro chitinoso articolato", "Conchiglia calcarea", "Colonna vertebrale", "Penne e piume"],
+            correct: 1
+          },
+          {
+            question: "Quale di questi è un mollusco cefalopode?",
+            answers: ["Lumaca", "Vongola", "Polpo", "Cavalluccio marino"],
+            correct: 2
+          }
+        ],
+        artropodi: [
+          {
+            question: "Quale caratteristica è tipica degli artropodi?",
+            answers: [
+              "Corpo molle privo di scheletro",
+              "Esoscheletro chitinoso e appendici articolate",
+              "Colonna vertebrale e cranio",
+              "Pelle ricoperta di piume"
+            ],
+            correct: 1
+          },
+          {
+            question: "Quale di questi animali è un artropode?",
+            answers: ["Lombrico", "Scarafaggio", "Polpo", "Stella marina"],
+            correct: 1
+          },
+          {
+            question: "Insetti, ragni e crostacei sono tutti:",
+            answers: ["Molluschi", "Anellidi", "Artropodi", "Echinodermi"],
+            correct: 2
+          }
+        ],
+        anellidi: [
+          {
+            question: "Quale caratteristica accomuna gli anellidi?",
+            answers: [
+              "Corpo segmentato in anelli",
+              "Corpo con conchiglia calcarea",
+              "Corpo con piume e ali",
+              "Corpo con colonna vertebrale"
+            ],
+            correct: 0
+          },
+          {
+            question: "Quale di questi è un anellide?",
+            answers: ["Lombrico", "Granchio", "Rana", "Gabbiano"],
+            correct: 0
+          },
+          {
+            question: "Le sanguisughe sono:",
+            answers: ["Molluschi", "Artropodi", "Anellidi", "Pesci"],
+            correct: 2
+          }
+        ],
+        echinodermi: [
+          {
+            question: "Quale caratteristica è tipica degli echinodermi?",
+            answers: [
+              "Simmetria bilaterale da adulti",
+              "Simmetria radiale (spesso pentamera) da adulti",
+              "Presenza di colonna vertebrale",
+              "Esoscheletro chitinoso articolato"
+            ],
+            correct: 1
+          },
+          {
+            question: "Quale di questi è un echinoderma?",
+            answers: ["Stella marina", "Polpo", "Granchio", "Lumaca"],
+            correct: 0
+          },
+          {
+            question: "Dove vivono gli echinodermi?",
+            answers: ["In acqua dolce", "In ambienti terrestri", "Solo in mare", "Nell'aria"],
+            correct: 2
+          }
+        ],
+        altri: [
+          {
+            question: "A quale gruppo appartengono coralli e meduse?",
+            answers: ["Cnidari", "Poriferi", "Platelminti", "Nematodi"],
+            correct: 0
+          },
+          {
+            question: "Le spugne di mare appartengono al gruppo dei:",
+            answers: ["Poriferi", "Cnidari", "Anellidi", "Artropodi"],
+            correct: 0
+          },
+          {
+            question: "I platelminti sono:",
+            answers: [
+              "Vermi piatti",
+              "Vermi segmentati",
+              "Vermi cilindrici",
+              "Molluschi con conchiglia"
+            ],
+            correct: 0
+          }
+        ]
+      },
+
+      // Curiosità
       special: {
         curiosita: [
           {
-            question: "Quale animale ha il morso più potente tra questi?",
+            question: "Quale animale ha uno dei morsi più potenti tra quelli elencati?",
             answers: ["Cane domestico", "Leone", "Ippopotamo", "Lince"],
-            correct: 2,
-            image: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Hippopotamus_in_SanDiegoZoo.jpg",
-            alt: "Ippopotamo in acqua"
+            correct: 2
           },
           {
             question: "Quale animale è noto per cambiare rapidamente colore per mimetizzarsi?",
             answers: ["Canguro", "Criceto", "Camaleonte", "Lupo artico"],
-            correct: 2,
-            image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Chamaeleo_chamaeleon_03.jpg",
-            alt: "Camaleonte su un ramo"
+            correct: 2
           },
           {
-            question: "Quale di questi animali ha il cuore più grande in rapporto alle dimensioni del corpo?",
-            answers: ["Colibrì", "Elefante africano", "Balena azzurra", "Tartaruga di terra"],
-            correct: 0,
-            image: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Colibri_thalassinus.jpg",
-            alt: "Colibrì in volo"
+            question: "Quale di questi animali ha un battito cardiaco molto elevato rispetto alle dimensioni?",
+            answers: ["Colibrì", "Elefante africano", "Balena azzurra", "Cavallo"],
+            correct: 0
           }
         ]
       }
@@ -693,9 +886,6 @@
     const answersEl = document.getElementById("answers");
     const feedbackEl = document.getElementById("feedback");
 
-    const imageContainer = document.getElementById("image-container");
-    const imageEl = document.getElementById("animal-image");
-
     const nextBtn = document.getElementById("next-btn");
     const restartBtn = document.getElementById("restart-btn");
 
@@ -710,10 +900,10 @@
     let currentIndex = 0;
     let score = 0;
     let answered = false;
-    let currentLabel = ""; // es. "Generico (Facile)", "Mammiferi", "Curiosità"
+    let currentLabel = "";
 
     // ==========================
-    //  FUNZIONI DI UTILITÀ
+    //  FUNZIONI
     // ==========================
 
     function shuffleArray(array) {
@@ -732,14 +922,16 @@
     }
 
     function startQuizFromHome(group, key) {
-      // group: 'generic' | 'category' | 'special'
-      // key: livello o categoria
       let questions = [];
 
       if (group === "generic") {
         questions = questionBanks.generic[key] || [];
-      } else if (group === "category") {
-        questions = questionBanks.category[key] || [];
+      } else if (group === "macro") {
+        questions = questionBanks.macro[key] || [];
+      } else if (group === "vertebratiClassi") {
+        questions = questionBanks.vertebratiClassi[key] || [];
+      } else if (group === "invertebratiClassi") {
+        questions = questionBanks.invertebratiClassi[key] || [];
       } else if (group === "special") {
         questions = questionBanks.special[key] || [];
       }
@@ -753,7 +945,6 @@
       currentIndex = 0;
       score = 0;
 
-      // Imposta titolo quiz
       if (group === "generic") {
         const labels = {
           easy: "Quiz generico (Facile)",
@@ -762,14 +953,30 @@
           expert: "Quiz generico (Esperto)"
         };
         currentLabel = labels[key] || "Quiz generico";
-      } else if (group === "category") {
+      } else if (group === "macro") {
+        const labels = {
+          vertebrati: "Vertebrati",
+          invertebrati: "Invertebrati"
+        };
+        currentLabel = `Macro-gruppo: ${labels[key] || key}`;
+      } else if (group === "vertebratiClassi") {
         const labels = {
           mammiferi: "Mammiferi",
-          rettili: "Rettili",
           uccelli: "Uccelli",
-          marini: "Animali marini"
+          rettili: "Rettili",
+          anfibi: "Anfibi",
+          pesci: "Pesci"
         };
-        currentLabel = `Categoria: ${labels[key] || key}`;
+        currentLabel = `Classe dei vertebrati: ${labels[key] || key}`;
+      } else if (group === "invertebratiClassi") {
+        const labels = {
+          molluschi: "Molluschi",
+          artropodi: "Artropodi",
+          anellidi: "Anellidi",
+          echinodermi: "Echinodermi",
+          altri: "Altri invertebrati"
+        };
+        currentLabel = `Classe degli invertebrati: ${labels[key] || key}`;
       } else if (group === "special") {
         if (key === "curiosita") currentLabel = "Curiosità sugli animali";
         else currentLabel = "Quiz speciale";
@@ -789,6 +996,7 @@
       nextBtn.disabled = true;
       feedbackEl.textContent = "";
       feedbackEl.className = "";
+
       answersEl.innerHTML = "";
 
       const total = currentQuestions.length;
@@ -797,16 +1005,6 @@
 
       const q = currentQuestions[currentIndex];
       questionEl.textContent = q.question;
-
-      if (q.image) {
-        imageContainer.classList.remove("hidden");
-        imageEl.src = q.image;
-        imageEl.alt = q.alt || "Immagine animale";
-      } else {
-        imageContainer.classList.add("hidden");
-        imageEl.src = "";
-        imageEl.alt = "";
-      }
 
       q.answers.forEach((answerText, index) => {
         const btn = document.createElement("button");
@@ -853,13 +1051,13 @@
       const ratio = score / total;
       let comment;
       if (ratio === 1) {
-        comment = "Perfetto! Livello da enciclopedia vivente del regno animale. 🏆";
+        comment = "Perfetto! Conosci benissimo questo gruppo di animali. 🏆";
       } else if (ratio >= 0.7) {
         comment = "Ottimo risultato! Sei molto preparatə, puoi puntare al 100%.";
       } else if (ratio >= 0.4) {
         comment = "Discreto: la base c'è, ma puoi ancora migliorare.";
       } else {
-        comment = "È un buon punto di partenza: riprova e vedrai i progressi.";
+        comment = "È un buon inizio: riprova il quiz per fissare meglio i concetti.";
       }
 
       resultDetailsEl.textContent = comment;
@@ -879,7 +1077,6 @@
     });
 
     restartBtn.addEventListener("click", () => {
-      // Ricomincia lo stesso quiz con domande rimescolate
       currentQuestions = shuffleArray(currentQuestions);
       currentIndex = 0;
       score = 0;
@@ -892,7 +1089,7 @@
       showHome();
     });
 
-    // All'avvio mostro la home
+    // Avvio: mostra home
     showHome();
   </script>
 </body>
