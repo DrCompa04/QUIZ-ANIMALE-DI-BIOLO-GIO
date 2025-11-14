@@ -18,10 +18,6 @@
       justify-content: center;
       align-items: center;
       padding: 16px;
-      /* Sfondo a tema animali */
-      background-image:
-        linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
-        url("https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -134,29 +130,11 @@
       margin-bottom: 8px;
     }
 
-    #back-home-btn {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: #4b5563;
-      padding: 4px 8px;
-      border-radius: 999px;
-      transition: background 0.1s ease;
-    }
-
-    #back-home-btn:hover {
-      background: #e5e7eb;
-    }
-
     #quiz-title {
       font-size: 0.95rem;
       font-weight: 500;
       color: #111827;
-      text-align: right;
+      text-align: left;
       flex: 1;
     }
 
@@ -214,7 +192,7 @@
     #feedback {
       min-height: 20px;
       font-size: 0.95rem;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     #feedback.correct {
@@ -223,6 +201,13 @@
 
     #feedback.wrong {
       color: #b91c1c;
+    }
+
+    #explanation {
+      min-height: 32px;
+      font-size: 0.9rem;
+      color: #374151;
+      margin-bottom: 12px;
     }
 
     .buttons {
@@ -253,6 +238,24 @@
     button.primary:hover:not(:disabled) {
       background: #4338ca;
       box-shadow: 0 4px 10px rgba(79,70,229,0.35);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      border: 1px solid #d1d5db;
+      background: #f3f4f6;
+      color: #374151;
+      padding: 9px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.1s ease, transform 0.05s ease, box-shadow 0.1s ease;
+    }
+
+    button.secondary:hover {
+      background: #e5e7eb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       transform: translateY(-1px);
     }
 
@@ -300,8 +303,8 @@
     <header>
       <h1>Quiz sugli animali 🐾</h1>
       <p>
-        Un sito per allenarsi con quiz sul regno animale: livelli diversi, categorie,
-        vertebrati, invertebrati e le loro classi.
+        Un sito per allenarsi con quiz sul regno animale: livelli diversi, vertebrati, invertebrati
+        e tutte le principali classi.
       </p>
     </header>
 
@@ -310,7 +313,7 @@
       <p id="home-intro">
         Questo sito è pensato per esercitarti con quiz sugli animali: dai vertebrati agli invertebrati,
         passando per le singole classi (mammiferi, uccelli, molluschi, artropodi e molte altre).
-        Scegli il tipo di quiz e prova le tue conoscenze!
+        Scegli il tipo di quiz e metti alla prova le tue conoscenze!
       </p>
 
       <h2 class="section-title">Quiz generici per livello</h2>
@@ -426,9 +429,6 @@
     <!-- CARD QUIZ -->
     <main id="quiz-card" class="hidden">
       <div class="top-bar">
-        <button id="back-home-btn">
-          ← Torna alla home
-        </button>
         <div id="quiz-title">Quiz</div>
       </div>
 
@@ -441,8 +441,10 @@
       </div>
 
       <div id="feedback"></div>
+      <div id="explanation"></div>
 
       <div class="buttons">
+        <button id="back-home-btn" class="secondary">Torna alla home</button>
         <button id="next-btn" class="primary" disabled>Prossima domanda</button>
       </div>
     </main>
@@ -461,6 +463,23 @@
 
   <script>
     // ==========================
+    //  SFONDO ANIMALI CASUALE
+    // ==========================
+    function setRandomBackground() {
+      const backgrounds = [
+        "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg", // animali in branco
+        "https://images.pexels.com/photos/52500/horse-herd-fog-nature-52500.jpeg", // cavalli
+        "https://images.pexels.com/photos/158471/ibis-bird-red-animals-158471.jpeg", // uccello rosso
+        "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg", // tigre
+        "https://images.pexels.com/photos/52500/horse-herd-fog-nature-52500.jpeg", // cavalli (ripetuto per sicurezza)
+        "https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg" // leone
+      ];
+      const chosen = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      document.body.style.backgroundImage =
+        `linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('${chosen}')`;
+    }
+
+    // ==========================
     //  BANCHE DI DOMANDE
     // ==========================
 
@@ -470,17 +489,20 @@
           {
             question: "Quale di questi è un animale vertebrato?",
             answers: ["Medusa", "Rana", "Polpo", "Stella marina"],
-            correct: 1
+            correct: 1,
+            explanation: "La rana è un anfibio e quindi un vertebrato. Meduse, polpi e stelle marine sono invertebrati."
           },
           {
             question: "Quale di questi animali è un mammifero?",
             answers: ["Squalo", "Gabbiano", "Gatto", "Rana"],
-            correct: 2
+            correct: 2,
+            explanation: "Il gatto è un mammifero: è a sangue caldo, ha il corpo coperto di peli e allatta i piccoli."
           },
           {
             question: "Quale tra questi vive principalmente in acqua dolce?",
             answers: ["Trota", "Ghepardo", "Gabbiano", "Cammello"],
-            correct: 0
+            correct: 0,
+            explanation: "La trota è un pesce che vive prevalentemente in fiumi e laghi, quindi in acqua dolce."
           }
         ],
         medium: [
@@ -492,17 +514,20 @@
               "Respirazione solo tramite branchie",
               "Metamorfosi obbligatoria"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "La presenza di ghiandole mammarie che producono latte per i piccoli è una caratteristica distintiva dei mammiferi."
           },
           {
             question: "Quale di questi è un animale invertebrato?",
             answers: ["Gatto", "Cavallo", "Polpo", "Pinguino"],
-            correct: 2
+            correct: 2,
+            explanation: "Il polpo è un mollusco e non possiede colonna vertebrale, quindi è un invertebrato."
           },
           {
             question: "Quale gruppo contiene solo animali acquatici?",
             answers: ["Mammiferi", "Rettili", "Pesci", "Uccelli"],
-            correct: 2
+            correct: 2,
+            explanation: "Il gruppo dei pesci è costituito da vertebrati che vivono in ambiente acquatico e respirano tramite branchie."
           }
         ],
         hard: [
@@ -514,24 +539,28 @@
               "Assenza quasi totale di pelliccia",
               "Colorazione sempre vivace"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Il grasso sottocutaneo spesso aiuta a isolare dal freddo e a mantenere la temperatura corporea."
           },
           {
             question: "Quale di questi è un super-predatore all'apice della catena alimentare nel suo ambiente?",
             answers: ["Coniglio selvatico", "Leone", "Gazzella", "Cervo"],
-            correct: 1
+            correct: 1,
+            explanation: "Il leone è un predatore al vertice della catena alimentare nelle savane africane."
           },
           {
             question: "Quale di questi animali è tipicamente notturno?",
             answers: ["Gufo", "Rondine", "Gabbiano", "Struzzo"],
-            correct: 0
+            correct: 0,
+            explanation: "I gufi sono uccelli rapaci notturni, specializzati nella caccia al buio."
           }
         ],
         expert: [
           {
             question: "Quale gruppo di vertebrati presenta più specie conosciute?",
             answers: ["Mammiferi", "Uccelli", "Rettili", "Pesci"],
-            correct: 3
+            correct: 3,
+            explanation: "I pesci sono il gruppo di vertebrati con il maggior numero di specie descritte."
           },
           {
             question: "Quale adattamento è tipico degli animali fossori (che vivono sottoterra)?",
@@ -541,7 +570,8 @@
               "Piume impermeabili",
               "Branchie esterne vistose"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Gli animali fossori hanno arti robusti e artigli per scavare facilmente nel terreno."
           },
           {
             question: "Quale tra questi è un esempio di mimetismo estremo?",
@@ -551,7 +581,8 @@
               "Forma e colore simili a una foglia",
               "Volo silenzioso"
             ],
-            correct: 2
+            correct: 2,
+            explanation: "Assomigliare a una foglia è un esempio di mimetismo, perché l'animale si confonde con l'ambiente."
           }
         ]
       },
@@ -567,7 +598,8 @@
               "Echinodermi, cnidari, crostacei",
               "Insetti, ragni, crostacei"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "I vertebrati includono cinque grandi gruppi: mammiferi, uccelli, rettili, anfibi e pesci."
           },
           {
             question: "Quale caratteristica è tipica di tutti i vertebrati?",
@@ -577,7 +609,8 @@
               "Respirazione solo tramite branchie",
               "Pelle ricoperta di piume"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "La colonna vertebrale è la struttura che definisce i vertebrati e protegge il midollo spinale."
           },
           {
             question: "Quale di questi è un vertebrato appartenente al gruppo degli anfibi?",
@@ -587,7 +620,8 @@
               "Stella marina",
               "Lumaca di terra"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "La rana è un anfibio, quindi un vertebrato che vive tra acqua e terra."
           }
         ],
 
@@ -600,7 +634,8 @@
               "Artropodi",
               "Anfibi"
             ],
-            correct: 2
+            correct: 2,
+            explanation: "Gli artropodi sono invertebrati con esoscheletro e appendici articolate (es. insetti, ragni, crostacei)."
           },
           {
             question: "Quale caratteristica accomuna gli invertebrati?",
@@ -610,7 +645,8 @@
               "Presenza di piume",
               "Scheletro interno osseo sempre presente"
             ],
-            correct: 0
+            correct: 0,
+            explanation: "Gli invertebrati sono definiti proprio dall'assenza di colonna vertebrale."
           },
           {
             question: "In quale grande gruppo di invertebrati rientrano insetti, ragni e crostacei?",
@@ -620,7 +656,8 @@
               "Anellidi",
               "Echinodermi"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Insetti, ragni e crostacei appartengono tutti al gruppo degli artropodi."
           }
         ]
       },
@@ -636,17 +673,20 @@
               "Respirano tramite branchie",
               "Hanno sempre ali"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Tutti i mammiferi possiedono ghiandole mammarie per nutrire i piccoli con il latte."
           },
           {
             question: "Quale tra questi è un mammifero?",
             answers: ["Squalo bianco", "Balena azzurra", "Trota", "Gabbiano"],
-            correct: 1
+            correct: 1,
+            explanation: "La balena azzurra è un mammifero marino, nonostante viva in acqua come i pesci."
           },
           {
             question: "Quale mammifero è tipicamente notturno?",
             answers: ["Giraffa", "Zebra", "Ghiro", "Struzzo"],
-            correct: 2
+            correct: 2,
+            explanation: "Il ghiro è un mammifero notturno, attivo soprattutto di notte."
           }
         ],
         uccelli: [
@@ -658,24 +698,28 @@
               "Branchie esterne",
               "Carapace rigido"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "La presenza di piume è una caratteristica distintiva degli uccelli."
           },
           {
             question: "Quale uccello è famoso per le lunghe migrazioni?",
             answers: ["Civetta", "Rondine", "Pappagallo ara", "Struzzo"],
-            correct: 1
+            correct: 1,
+            explanation: "Le rondini compiono migrazioni stagionali molto lunghe tra continenti."
           },
           {
             question: "Quale uccello è noto per non poter volare?",
             answers: ["Aquila reale", "Pinguino", "Falco pellegrino", "Gabbiano reale"],
-            correct: 1
+            correct: 1,
+            explanation: "I pinguini sono uccelli adattati alla vita acquatica e non sono in grado di volare."
           }
         ],
         rettili: [
           {
             question: "Quale tra questi animali è un rettile?",
             answers: ["Rana", "Serpente", "Salmone", "Pipistrello"],
-            correct: 1
+            correct: 1,
+            explanation: "Il serpente è un rettile, con pelle ricoperta di squame secche."
           },
           {
             question: "Quale caratteristica è tipica dei rettili?",
@@ -685,12 +729,14 @@
               "Pelle con pelliccia",
               "Pelle ricoperta di piume"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "I rettili hanno la pelle secca e ricoperta di squame, adattata alla vita terrestre."
           },
           {
             question: "Le tartarughe marine appartengono al gruppo dei:",
             answers: ["Pesci", "Mammiferi", "Rettili", "Anfibi"],
-            correct: 2
+            correct: 2,
+            explanation: "Le tartarughe marine sono rettili, respirano aria e depongono uova sulla terraferma."
           }
         ],
         anfibi: [
@@ -702,17 +748,20 @@
               "Carapace rigido",
               "Piume impermeabili"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Gli anfibi hanno pelle sottile, umida e permeabile, importante anche per gli scambi gassosi."
           },
           {
             question: "In quale ambiente vivono generalmente gli anfibi durante la fase larvale?",
             answers: ["Terrestre", "Aereo", "Acquatico", "Sotterraneo"],
-            correct: 2
+            correct: 2,
+            explanation: "Le larve degli anfibi (come i girini) vivono nell'acqua e respirano tramite branchie."
           },
           {
             question: "Quale di questi è un anfibio?",
             answers: ["Tritone", "Serpente", "Riccio", "Merlo"],
-            correct: 0
+            correct: 0,
+            explanation: "Il tritone è un anfibio, imparentato con le salamandre."
           }
         ],
         pesci: [
@@ -724,17 +773,20 @@
               "Piume per il volo",
               "Pelle con pelliccia"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "I pesci respirano principalmente tramite branchie, adattate all'estrazione di ossigeno dall'acqua."
           },
           {
             question: "La maggior parte dei pesci si sposta usando:",
             answers: ["Ali", "Zampe posteriori", "Pinne", "Tentacoli"],
-            correct: 2
+            correct: 2,
+            explanation: "Le pinne permettono la propulsione e il controllo dei movimenti in acqua."
           },
           {
             question: "Quale di questi animali è un pesce osseo?",
             answers: ["Squalo martello", "Trota", "Delfino", "Polpo"],
-            correct: 1
+            correct: 1,
+            explanation: "La trota è un pesce osseo; gli squali invece sono pesci cartilaginei."
           }
         ]
       },
@@ -745,17 +797,20 @@
           {
             question: "A quale gruppo appartengono chiocciole, vongole e calamari?",
             answers: ["Artropodi", "Molluschi", "Anellidi", "Echinodermi"],
-            correct: 1
+            correct: 1,
+            explanation: "Chiocciole, vongole e calamari sono tutti molluschi, anche se con forme molto diverse."
           },
           {
             question: "Quale struttura è tipica di molti molluschi (come le chiocciole)?",
             answers: ["Esoscheletro chitinoso articolato", "Conchiglia calcarea", "Colonna vertebrale", "Penne e piume"],
-            correct: 1
+            correct: 1,
+            explanation: "Molti molluschi possiedono una conchiglia calcarea che protegge il corpo molle."
           },
           {
             question: "Quale di questi è un mollusco cefalopode?",
             answers: ["Lumaca", "Vongola", "Polpo", "Cavalluccio marino"],
-            correct: 2
+            correct: 2,
+            explanation: "Il polpo è un cefalopode, un gruppo di molluschi molto evoluti con tentacoli e buona capacità cognitiva."
           }
         ],
         artropodi: [
@@ -767,17 +822,20 @@
               "Colonna vertebrale e cranio",
               "Pelle ricoperta di piume"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Gli artropodi hanno un esoscheletro di chitina e arti segmentati e articolati."
           },
           {
             question: "Quale di questi animali è un artropode?",
             answers: ["Lombrico", "Scarafaggio", "Polpo", "Stella marina"],
-            correct: 1
+            correct: 1,
+            explanation: "Lo scarafaggio è un insetto, quindi un artropode."
           },
           {
             question: "Insetti, ragni e crostacei sono tutti:",
             answers: ["Molluschi", "Anellidi", "Artropodi", "Echinodermi"],
-            correct: 2
+            correct: 2,
+            explanation: "Questi tre gruppi appartengono tutti al grande phylum degli artropodi."
           }
         ],
         anellidi: [
@@ -789,17 +847,20 @@
               "Corpo con piume e ali",
               "Corpo con colonna vertebrale"
             ],
-            correct: 0
+            correct: 0,
+            explanation: "Negli anellidi il corpo è formato da segmenti ripetuti simili ad anelli."
           },
           {
             question: "Quale di questi è un anellide?",
             answers: ["Lombrico", "Granchio", "Rana", "Gabbiano"],
-            correct: 0
+            correct: 0,
+            explanation: "Il lombrico è un classico esempio di anellide terricolo."
           },
           {
             question: "Le sanguisughe sono:",
             answers: ["Molluschi", "Artropodi", "Anellidi", "Pesci"],
-            correct: 2
+            correct: 2,
+            explanation: "Le sanguisughe appartengono al gruppo degli anellidi, pur avendo un aspetto diverso dai lombrichi."
           }
         ],
         echinodermi: [
@@ -811,29 +872,34 @@
               "Presenza di colonna vertebrale",
               "Esoscheletro chitinoso articolato"
             ],
-            correct: 1
+            correct: 1,
+            explanation: "Gli echinodermi adulti presentano spesso una simmetria radiale a cinque raggi."
           },
           {
             question: "Quale di questi è un echinoderma?",
             answers: ["Stella marina", "Polpo", "Granchio", "Lumaca"],
-            correct: 0
+            correct: 0,
+            explanation: "La stella marina è un echinoderma tipico, con braccia disposte a raggiera."
           },
           {
             question: "Dove vivono gli echinodermi?",
             answers: ["In acqua dolce", "In ambienti terrestri", "Solo in mare", "Nell'aria"],
-            correct: 2
+            correct: 2,
+            explanation: "Gli echinodermi sono esclusivamente marini, non vivono in acqua dolce né sulla terraferma."
           }
         ],
         altri: [
           {
             question: "A quale gruppo appartengono coralli e meduse?",
             answers: ["Cnidari", "Poriferi", "Platelminti", "Nematodi"],
-            correct: 0
+            correct: 0,
+            explanation: "Coralli e meduse sono cnidari, dotati di cellule urticanti chiamate cnidocisti."
           },
           {
             question: "Le spugne di mare appartengono al gruppo dei:",
             answers: ["Poriferi", "Cnidari", "Anellidi", "Artropodi"],
-            correct: 0
+            correct: 0,
+            explanation: "Le spugne sono poriferi, animali molto semplici privi di veri tessuti e organi."
           },
           {
             question: "I platelminti sono:",
@@ -843,7 +909,8 @@
               "Vermi cilindrici",
               "Molluschi con conchiglia"
             ],
-            correct: 0
+            correct: 0,
+            explanation: "I platelminti sono vermi piatti, come le classiche tenie intestinali."
           }
         ]
       },
@@ -854,17 +921,20 @@
           {
             question: "Quale animale ha uno dei morsi più potenti tra quelli elencati?",
             answers: ["Cane domestico", "Leone", "Ippopotamo", "Lince"],
-            correct: 2
+            correct: 2,
+            explanation: "L'ippopotamo ha un morso estremamente potente, capace di rompere anche ossa robuste."
           },
           {
             question: "Quale animale è noto per cambiare rapidamente colore per mimetizzarsi?",
             answers: ["Canguro", "Criceto", "Camaleonte", "Lupo artico"],
-            correct: 2
+            correct: 2,
+            explanation: "Il camaleonte può modificare colore e tonalità della pelle per mimetismo e comunicazione."
           },
           {
             question: "Quale di questi animali ha un battito cardiaco molto elevato rispetto alle dimensioni?",
             answers: ["Colibrì", "Elefante africano", "Balena azzurra", "Cavallo"],
-            correct: 0
+            correct: 0,
+            explanation: "Il colibrì ha un battito cardiaco molto rapido per sostenere il volo battendo le ali velocemente."
           }
         ]
       }
@@ -885,6 +955,7 @@
     const questionEl = document.getElementById("question");
     const answersEl = document.getElementById("answers");
     const feedbackEl = document.getElementById("feedback");
+    const explanationEl = document.getElementById("explanation");
 
     const nextBtn = document.getElementById("next-btn");
     const restartBtn = document.getElementById("restart-btn");
@@ -996,6 +1067,7 @@
       nextBtn.disabled = true;
       feedbackEl.textContent = "";
       feedbackEl.className = "";
+      explanationEl.textContent = "";
 
       answersEl.innerHTML = "";
 
@@ -1036,6 +1108,13 @@
         }
         feedbackEl.textContent = "Risposta sbagliata.";
         feedbackEl.classList.add("wrong");
+      }
+
+      // Spiegazione sotto la risposta
+      if (q.explanation) {
+        explanationEl.textContent = q.explanation;
+      } else {
+        explanationEl.textContent = "";
       }
 
       nextBtn.disabled = false;
@@ -1089,8 +1168,10 @@
       showHome();
     });
 
-    // Avvio: mostra home
-    showHome();
+    document.addEventListener("DOMContentLoaded", () => {
+      setRandomBackground();
+      showHome();
+    });
   </script>
 </body>
 </html>
