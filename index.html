@@ -23,7 +23,7 @@
 
     .app {
       background: white;
-      max-width: 700px;
+      max-width: 900px;
       width: 100%;
       border-radius: 20px;
       padding: 24px;
@@ -36,7 +36,7 @@
     }
 
     header h1 {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       margin-bottom: 4px;
     }
 
@@ -45,8 +45,111 @@
       color: #555;
     }
 
+    /* HOME */
+
+    #home {
+      margin-top: 12px;
+    }
+
+    #home-intro {
+      margin-bottom: 18px;
+      font-size: 0.98rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .card button {
+      align-self: flex-start;
+      border: none;
+      background: #4f46e5;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 4px;
+      transition: background 0.1s ease, transform 0.05s ease, box-shadow 0.1s ease;
+    }
+
+    .card button:hover {
+      background: #4338ca;
+      box-shadow: 0 3px 8px rgba(79,70,229,0.3);
+      transform: translateY(-1px);
+    }
+
+    /* QUIZ */
+
     #quiz-card, #result-card {
       margin-top: 12px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    #back-home-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #4b5563;
+      padding: 4px 8px;
+      border-radius: 999px;
+      transition: background 0.1s ease;
+    }
+
+    #back-home-btn:hover {
+      background: #e5e7eb;
+    }
+
+    #quiz-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #111827;
+      text-align: right;
+      flex: 1;
     }
 
     #progress {
@@ -183,11 +286,15 @@
       }
 
       header h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
 
       #question {
         font-size: 1.05rem;
+      }
+
+      #quiz-title {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -196,11 +303,84 @@
   <div class="app">
     <header>
       <h1>Quiz sugli animali 🐾</h1>
-      <p>Seleziona la risposta corretta e scopri quanto conosci il regno animale!</p>
+      <p>Un sito per allenarsi con quiz sul regno animale: livelli diversi, categorie e curiosità.</p>
     </header>
 
-    <!-- Card quiz -->
-    <main id="quiz-card">
+    <!-- HOME -->
+    <section id="home">
+      <p id="home-intro">
+        Questo sito è pensato per esercitarsi con quiz sugli animali: dalla base fino al livello esperto.
+        Puoi scegliere quiz generici, quiz su un singolo gruppo di animali,
+        oppure quiz dedicati alle curiosità più strane del mondo animale.
+      </p>
+
+      <h2 class="section-title">Quiz generici per livello</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">Facile 🐣</div>
+          <div class="card-desc">Domande introduttive per rompere il ghiaccio.</div>
+          <button onclick="startQuizFromHome('generic', 'easy')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Medio 🦊</div>
+          <div class="card-desc">Per chi ha già qualche base di zoologia.</div>
+          <button onclick="startQuizFromHome('generic', 'medium')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Difficile 🦁</div>
+          <div class="card-desc">Domande più tecniche e specifiche.</div>
+          <button onclick="startQuizFromHome('generic', 'hard')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Esperto 🧠</div>
+          <div class="card-desc">Per chi vuole mettersi davvero alla prova.</div>
+          <button onclick="startQuizFromHome('generic', 'expert')">Inizia</button>
+        </div>
+      </div>
+
+      <h2 class="section-title">Quiz per tipo di animale</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">Mammiferi</div>
+          <div class="card-desc">Dai pipistrelli alle balene, passando per i felini.</div>
+          <button onclick="startQuizFromHome('category', 'mammiferi')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Rettili</div>
+          <div class="card-desc">Lucertole, serpenti, tartarughe e affini.</div>
+          <button onclick="startQuizFromHome('category', 'rettili')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Uccelli</div>
+          <div class="card-desc">Dai rapaci migratori ai piccoli passeriformi.</div>
+          <button onclick="startQuizFromHome('category', 'uccelli')">Inizia</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Animali marini</div>
+          <div class="card-desc">Pesci, cetacei, invertebrati e creature degli abissi.</div>
+          <button onclick="startQuizFromHome('category', 'marini')">Inizia</button>
+        </div>
+      </div>
+
+      <h2 class="section-title">Curiosità sugli animali</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">Curiosità</div>
+          <div class="card-desc">Quiz dedicato a fatti strani, record e comportamenti particolari.</div>
+          <button onclick="startQuizFromHome('special', 'curiosita')">Inizia</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD QUIZ -->
+    <main id="quiz-card" class="hidden">
+      <div class="top-bar">
+        <button id="back-home-btn">
+          ← Torna alla home
+        </button>
+        <div id="quiz-title">Quiz</div>
+      </div>
+
       <div id="progress">Domanda 1 / 1</div>
 
       <div id="image-container" class="hidden">
@@ -220,62 +400,293 @@
       </div>
     </main>
 
-    <!-- Card risultato -->
+    <!-- CARD RISULTATO -->
     <section id="result-card" class="hidden">
       <h2>Risultato</h2>
       <p id="result-text"></p>
       <p id="result-details"></p>
 
       <div class="buttons">
-        <button id="restart-btn" class="primary">Ricomincia il quiz</button>
+        <button id="restart-btn" class="primary">Ricomincia questo quiz</button>
       </div>
     </section>
   </div>
 
   <script>
-    // QUIZ DATA
+    // ==========================
+    //  BANCHE DI DOMANDE
+    // ==========================
     // Puoi aggiungere / modificare domande qui.
-    const quizData = [
-      {
-        question: "Quale di questi animali è un mammifero?",
-        answers: ["Squalo", "Pipistrello", "Salmone", "Rana"],
-        correct: 1,
-        image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Common_Pipistrelle_%28Pipistrellus_pipistrellus%29_%2839226662780%29.jpg",
-        alt: "Pipistrello su un ramo"
-      },
-      {
-        question: "Quale di questi animali è un rettile?",
-        answers: ["Rana", "Tartaruga marina", "Trota", "Gabbiano"],
-        correct: 1,
-        image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Green_turtle_swimming_over_coral_reefs_in_Kona.jpg",
-        alt: "Tartaruga marina che nuota"
-      },
-      {
-        question: "Quale animale è noto per compiere lunghe migrazioni?",
-        answers: ["Panda gigante", "Balena azzurra", "Koala", "Talpa"],
-        correct: 1,
-        image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Mother_and_baby_blue_whale.jpg",
-        alt: "Balena azzurra"
-      },
-      {
-        question: "Quale di questi è un invertebrato?",
-        answers: ["Gatto", "Polpo", "Pinguino", "Coccodrillo"],
-        correct: 1,
-        image: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Octopus2.jpg",
-        alt: "Polpo in acqua"
-      },
-      {
-        question: "Quale di questi animali è tipicamente notturno?",
-        answers: ["Gufo", "Scoiattolo rosso", "Colibrì", "Giraffa"],
-        correct: 0,
-        image: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Tyto_alba_close_up.jpg",
-        alt: "Primo piano di un gufo"
-      }
-    ];
+    // Ogni domanda ha: question, answers[], correct (indice), image, alt
 
-    // ELEMENTI DEL DOM
+    const questionBanks = {
+      generic: {
+        easy: [
+          {
+            question: "Quale di questi animali è un mammifero?",
+            answers: ["Squalo", "Pipistrello", "Salmone", "Rana"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Common_Pipistrelle_%28Pipistrellus_pipistrellus%29_%2839226662780%29.jpg",
+            alt: "Pipistrello su un ramo"
+          },
+          {
+            question: "Quale di questi animali vive principalmente in acqua dolce?",
+            answers: ["Trota", "Gabbiano", "Cammello", "Ghepardo"],
+            correct: 0,
+            image: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Trout_in_the_stream.jpg",
+            alt: "Trota in un torrente"
+          },
+          {
+            question: "Quale di questi è un uccello?",
+            answers: ["Giraffa", "Pinguino", "Delfino", "Cane"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pygoscelis_adeliae1.jpg",
+            alt: "Pinguino su ghiaccio"
+          }
+        ],
+        medium: [
+          {
+            question: "Quale di questi animali è un marsupiale?",
+            answers: ["Koala", "Cane", "Gatto", "Volpe"],
+            correct: 0,
+            image: "https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg",
+            alt: "Koala su un albero"
+          },
+          {
+            question: "Quale caratteristica è tipica dei mammiferi?",
+            answers: [
+              "Pelle con squame",
+              "Produzione di latte per nutrire i piccoli",
+              "Respirazione tramite branchie",
+              "Metamorfosi completa"
+            ],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Mother_cat_with_three_kittens.jpg",
+            alt: "Gatta che allatta i piccoli"
+          },
+          {
+            question: "Quale gruppo di animali depone tipicamente uova con guscio calcificato?",
+            answers: ["Mammiferi", "Rettili e uccelli", "Pesci cartilaginei", "Crostacei"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Bird_egg_collection_museum_of_vertebrate_zoology.jpg",
+            alt: "Collezione di uova di uccelli"
+          }
+        ],
+        hard: [
+          {
+            question: "Quale di questi animali è un esempio di mammifero oviparo?",
+            answers: ["Ornitorinco", "Pipistrello", "Delfino", "Gorilla"],
+            correct: 0,
+            image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Ornithorhynchus_anatinus.jpg",
+            alt: "Ornitorinco vicino all'acqua"
+          },
+          {
+            question: "Quale adattamento è tipico degli animali che vivono in ambienti artici?",
+            answers: [
+              "Superficie corporea molto ampia rispetto al volume",
+              "Strato spesso di grasso sottocutaneo",
+              "Colorazione vivace per attirare i predatori",
+              "Metabolismo estremamente lento in ogni stagione"
+            ],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Polar_Bear_-_Alaska_%28cropped%29.jpg",
+            alt: "Orso polare su ghiaccio"
+          },
+          {
+            question: "Quale di questi animali è un super-predatore all'apice della catena alimentare nel suo ambiente?",
+            answers: ["Coniglio selvatico", "Leone", "Gazzella", "Cervo"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
+            alt: "Leone in savana"
+          }
+        ],
+        expert: [
+          {
+            question: "Quale di questi animali utilizza l'ecolocalizzazione in modo particolarmente sviluppato?",
+            answers: ["Pinguino imperatore", "Pipistrello", "Tartaruga di terra", "Panda gigante"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Brown_long-eared_bat_%28Plecotus_auritus%29_2.jpg",
+            alt: "Pipistrello in volo"
+          },
+          {
+            question: "Quale adattamento è tipico degli animali fossori (che vivono sottoterra)?",
+            answers: [
+              "Ali molto sviluppate",
+              "Arti anteriori robusti e artigliati",
+              "Pinne pettorali allungate",
+              "Branchie esterne vistose"
+            ],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Talpa_europaea_MHNT.jpg",
+            alt: "Talpa europea"
+          },
+          {
+            question: "Quale di questi animali presenta un mimetismo estremamente specializzato per confondersi con le foglie?",
+            answers: ["Geco foglia", "Pinguino", "Canguro rosso", "Cane lupo"],
+            correct: 0,
+            image: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Uroplatus_fimbriatus.jpg",
+            alt: "Geco foglia su un ramo"
+          }
+        ]
+      },
+
+      category: {
+        mammiferi: [
+          {
+            question: "Quale caratteristica è comune a tutti i mammiferi?",
+            answers: [
+              "Depongono uova in acqua",
+              "Allattano i piccoli con latte prodotto dalle ghiandole mammarie",
+              "Respirano tramite branchie",
+              "Hanno sempre ali"
+            ],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Elephant_and_calf.jpg",
+            alt: "Elefante con il piccolo"
+          },
+          {
+            question: "Quale di questi è un mammifero marino?",
+            answers: ["Squalo bianco", "Balena azzurra", "Tartaruga verde", "Barracuda"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Mother_and_baby_blue_whale.jpg",
+            alt: "Balena azzurra in mare"
+          },
+          {
+            question: "Quale di questi mammiferi è tipicamente notturno?",
+            answers: ["Ghiro", "Giraffa", "Zebra", "Struzzo"],
+            correct: 0,
+            image: "https://upload.wikimedia.org/wikipedia/commons/9/92/Dormouse_2007.jpg",
+            alt: "Ghiro su un ramo"
+          }
+        ],
+        rettili: [
+          {
+            question: "Quale tra questi animali è un rettile?",
+            answers: ["Rana", "Serpente", "Salmone", "Pipistrello"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Green_tree_python.jpg",
+            alt: "Serpente verde su un ramo"
+          },
+          {
+            question: "Quale caratteristica è tipica dei rettili?",
+            answers: [
+              "Pelle umida senza squame",
+              "Pelle secca ricoperta di squame",
+              "Pelle con pelliccia",
+              "Pelle ricoperta di piume"
+            ],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/2/23/Lizard_on_the_rock.jpg",
+            alt: "Lucertola su una roccia"
+          },
+          {
+            question: "Le tartarughe marine sono:",
+            answers: [
+              "Pesci",
+              "Mammiferi",
+              "Rettili",
+              "Anfibi"
+            ],
+            correct: 2,
+            image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Green_turtle_swimming_over_coral_reefs_in_Kona.jpg",
+            alt: "Tartaruga marina che nuota"
+          }
+        ],
+        uccelli: [
+          {
+            question: "Quale caratteristica è tipica degli uccelli?",
+            answers: [
+              "Pelle ricoperta da scaglie",
+              "Pelle ricoperta da piume",
+              "Branchie esterne",
+              "Carapace rigido"
+            ],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/3/32/House_sparrow04.jpg",
+            alt: "Passero su un ramo"
+          },
+          {
+            question: "Quale di questi uccelli è famoso per le lunghe migrazioni?",
+            answers: ["Civetta", "Rondine", "Pappagallo ara", "Struzzo"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Barn_swallow_%28Hirundo_rustica%29.jpg",
+            alt: "Rondine in volo"
+          },
+          {
+            question: "Quale uccello è noto per non poter volare?",
+            answers: ["Aquila reale", "Pinguino", "Falco pellegrino", "Gabbiano reale"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pygoscelis_adeliae1.jpg",
+            alt: "Pinguino su ghiaccio"
+          }
+        ],
+        marini: [
+          {
+            question: "Quale di questi è un cetaceo?",
+            answers: ["Tonno rosso", "Orca", "Squalo martello", "Manta gigante"],
+            correct: 1,
+            image: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Orca_male.jpg",
+            alt: "Orca in mare"
+          },
+          {
+            question: "Quale adattamento è tipico dei pesci ossei?",
+            answers: [
+              "Piume impermeabili",
+              "Pelle con pelliccia folta",
+              "Pinne e branchie",
+              "Ali membranose"
+            ],
+            correct: 2,
+            image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Coral_Reef_fish.jpg",
+            alt: "Pesci colorati sulla barriera corallina"
+          },
+          {
+            question: "Le meduse appartengono al gruppo dei:",
+            answers: ["Mammiferi marini", "Crostacei", "Cnidari", "Molluschi"],
+            correct: 2,
+            image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Jelly_cc11.jpg",
+            alt: "Medusa in acqua"
+          }
+        ]
+      },
+
+      special: {
+        curiosita: [
+          {
+            question: "Quale animale ha il morso più potente tra questi?",
+            answers: ["Cane domestico", "Leone", "Ippopotamo", "Lince"],
+            correct: 2,
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Hippopotamus_in_SanDiegoZoo.jpg",
+            alt: "Ippopotamo in acqua"
+          },
+          {
+            question: "Quale animale è noto per cambiare rapidamente colore per mimetizzarsi?",
+            answers: ["Canguro", "Criceto", "Camaleonte", "Lupo artico"],
+            correct: 2,
+            image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Chamaeleo_chamaeleon_03.jpg",
+            alt: "Camaleonte su un ramo"
+          },
+          {
+            question: "Quale di questi animali ha il cuore più grande in rapporto alle dimensioni del corpo?",
+            answers: ["Colibrì", "Elefante africano", "Balena azzurra", "Tartaruga di terra"],
+            correct: 0,
+            image: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Colibri_thalassinus.jpg",
+            alt: "Colibrì in volo"
+          }
+        ]
+      }
+    };
+
+    // ==========================
+    //  ELEMENTI DEL DOM
+    // ==========================
+
+    const homeSection = document.getElementById("home");
     const quizCard = document.getElementById("quiz-card");
     const resultCard = document.getElementById("result-card");
+
+    const backHomeBtn = document.getElementById("back-home-btn");
+    const quizTitleEl = document.getElementById("quiz-title");
 
     const progressEl = document.getElementById("progress");
     const questionEl = document.getElementById("question");
@@ -291,10 +702,19 @@
     const resultTextEl = document.getElementById("result-text");
     const resultDetailsEl = document.getElementById("result-details");
 
+    // ==========================
+    //  STATO DEL QUIZ
+    // ==========================
+
+    let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
     let answered = false;
-    let shuffledQuestions = [];
+    let currentLabel = ""; // es. "Generico (Facile)", "Mammiferi", "Curiosità"
+
+    // ==========================
+    //  FUNZIONI DI UTILITÀ
+    // ==========================
 
     function shuffleArray(array) {
       const arr = [...array];
@@ -305,12 +725,62 @@
       return arr;
     }
 
-    function startQuiz() {
-      shuffledQuestions = shuffleArray(quizData);
+    function showHome() {
+      homeSection.classList.remove("hidden");
+      quizCard.classList.add("hidden");
+      resultCard.classList.add("hidden");
+    }
+
+    function startQuizFromHome(group, key) {
+      // group: 'generic' | 'category' | 'special'
+      // key: livello o categoria
+      let questions = [];
+
+      if (group === "generic") {
+        questions = questionBanks.generic[key] || [];
+      } else if (group === "category") {
+        questions = questionBanks.category[key] || [];
+      } else if (group === "special") {
+        questions = questionBanks.special[key] || [];
+      }
+
+      if (!questions.length) {
+        alert("Non ci sono ancora domande per questo quiz.");
+        return;
+      }
+
+      currentQuestions = shuffleArray(questions);
       currentIndex = 0;
       score = 0;
-      quizCard.classList.remove("hidden");
+
+      // Imposta titolo quiz
+      if (group === "generic") {
+        const labels = {
+          easy: "Quiz generico (Facile)",
+          medium: "Quiz generico (Medio)",
+          hard: "Quiz generico (Difficile)",
+          expert: "Quiz generico (Esperto)"
+        };
+        currentLabel = labels[key] || "Quiz generico";
+      } else if (group === "category") {
+        const labels = {
+          mammiferi: "Mammiferi",
+          rettili: "Rettili",
+          uccelli: "Uccelli",
+          marini: "Animali marini"
+        };
+        currentLabel = `Categoria: ${labels[key] || key}`;
+      } else if (group === "special") {
+        if (key === "curiosita") currentLabel = "Curiosità sugli animali";
+        else currentLabel = "Quiz speciale";
+      }
+
+      quizTitleEl.textContent = currentLabel;
+
+      homeSection.classList.add("hidden");
       resultCard.classList.add("hidden");
+      quizCard.classList.remove("hidden");
+
       showQuestion();
     }
 
@@ -321,11 +791,11 @@
       feedbackEl.className = "";
       answersEl.innerHTML = "";
 
-      const total = shuffledQuestions.length;
+      const total = currentQuestions.length;
       const current = currentIndex + 1;
       progressEl.textContent = `Domanda ${current} / ${total}`;
 
-      const q = shuffledQuestions[currentIndex];
+      const q = currentQuestions[currentIndex];
       questionEl.textContent = q.question;
 
       if (q.image) {
@@ -351,7 +821,7 @@
       if (answered) return;
       answered = true;
 
-      const q = shuffledQuestions[currentIndex];
+      const q = currentQuestions[currentIndex];
       const answerButtons = document.querySelectorAll(".answer-btn");
 
       answerButtons.forEach((b) => (b.disabled = true));
@@ -377,26 +847,30 @@
       quizCard.classList.add("hidden");
       resultCard.classList.remove("hidden");
 
-      const total = shuffledQuestions.length;
-      resultTextEl.textContent = `Hai risposto correttamente a ${score} domande su ${total}.`;
+      const total = currentQuestions.length;
+      resultTextEl.textContent = `Hai risposto correttamente a ${score} domande su ${total} nel quiz: ${currentLabel}.`;
 
-      let comment;
       const ratio = score / total;
+      let comment;
       if (ratio === 1) {
-        comment = "Perfetto! Sei un* vero* esperto* del regno animale! 🏆";
+        comment = "Perfetto! Livello da enciclopedia vivente del regno animale. 🏆";
       } else if (ratio >= 0.7) {
-        comment = "Molto bene! Ottima conoscenza, puoi puntare al 100%.";
+        comment = "Ottimo risultato! Sei molto preparatə, puoi puntare al 100%.";
       } else if (ratio >= 0.4) {
-        comment = "Discreto! C'è ancora spazio per migliorare.";
+        comment = "Discreto: la base c'è, ma puoi ancora migliorare.";
       } else {
-        comment = "È un buon inizio: allenati ancora con altri quiz!";
+        comment = "È un buon punto di partenza: riprova e vedrai i progressi.";
       }
 
       resultDetailsEl.textContent = comment;
     }
 
+    // ==========================
+    //  EVENTI
+    // ==========================
+
     nextBtn.addEventListener("click", () => {
-      if (currentIndex < shuffledQuestions.length - 1) {
+      if (currentIndex < currentQuestions.length - 1) {
         currentIndex++;
         showQuestion();
       } else {
@@ -405,11 +879,21 @@
     });
 
     restartBtn.addEventListener("click", () => {
-      startQuiz();
+      // Ricomincia lo stesso quiz con domande rimescolate
+      currentQuestions = shuffleArray(currentQuestions);
+      currentIndex = 0;
+      score = 0;
+      quizCard.classList.remove("hidden");
+      resultCard.classList.add("hidden");
+      showQuestion();
     });
 
-    // Avvio iniziale
-    startQuiz();
+    backHomeBtn.addEventListener("click", () => {
+      showHome();
+    });
+
+    // All'avvio mostro la home
+    showHome();
   </script>
 </body>
 </html>
